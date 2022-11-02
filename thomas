@@ -1,0 +1,26 @@
+
+n=7
+a=[0,1,2,3,4,5,6]
+b=[2,4,6,8,6,4,2]
+c=[6,5,4,3,2,1,0]
+d=[0,1,2,3,2,1,0]
+x=[]
+c2=[]
+d2=[]
+
+for i in range (n):
+    if i==0:
+        c2_=c[0]/b[0]
+        c2.append(c2_)
+        d2_=d[0]/b[0]
+        d2.append(d2_)
+    else:
+        c2.append((c[i])/(b[i]-a[i]*c2[i-1]))
+        d2.append((d[i]-a[i])/(b[i]-a[i]*c2[i-1]))
+d2n=(d[n-1]-a[n-1]*d2[n-2])/(b[n-1]-a[n-1]*c[n-2])
+d2.append(d2n)
+x[n]=d2n
+for i in reversed(range(n)):
+    x.append(d2[i]-c2[i]*x[i+1])
+x.append(x[n])
+print x
